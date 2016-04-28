@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'gli'
+
+module GrokCLI
+  require_relative '../lib/grok_cli'
+
+  exit run(ARGV)
+end
