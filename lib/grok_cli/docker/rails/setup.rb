@@ -14,7 +14,7 @@ module GrokCLI::Docker::Rails
         docker-compose build
         docker-compose run --rm web bundle install --jobs 16
         docker-compose run --rm web bundle exec rake db:create db:migrate db:populate
-        docker-compose run --rm web bundle exec rake db:create db:migrate db:populate RAILS_ENV=test
+        docker-compose run --rm web bundle exec rake db:create db:migrate RAILS_ENV=test
 
       CMD
     end
