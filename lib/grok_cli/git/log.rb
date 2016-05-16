@@ -5,13 +5,13 @@ require 'uri'
 module GrokCLI::Git
   class Log
 
-    def execute(since_hours_ago:, domains: )
+    def execute(since_hours_ago:, domains:, author:)
       pwd = Dir.pwd
       git = Git.open(pwd)
 
       map = {}
 
-      git.log.since("#{since_hours_ago} hours ago").reverse_each do |commit|
+      git.log.author(author).since("#{since_hours_ago} hours ago").reverse_each do |commit|
         uris = URI.extract(commit.message)
 
         uris.select! do |uri|
@@ -94,8 +94,13 @@ module GrokCLI
         default_value: /trello\.com|atlassian\.net|asana\.com/,
         desc: 'A regular expression to search against domain names'
 
+      c.flag [:a, :author],
+        type: String,
+        default_value: ::Git::Lib.new.global_config_get('user.name'),
+        desc: 'The git user\'s name to view history'
+
       c.action do |global_options,options,arguments|
-        GrokCLI::Git::Log.new.execute(since_hours_ago: options[:since], domains: options[:domains])
+        GrokCLI::Git::Log.new.execute(since_hours_ago: options[:since], domains: options[:domains], author: options[:author])
       end
     end
   end
