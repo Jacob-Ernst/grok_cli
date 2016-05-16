@@ -11,7 +11,7 @@ module GrokCLI::Git
 
       map = {}
 
-      git.log.author(author).since("#{since_hours_ago} hours ago").reverse_each do |commit|
+      git.log(1_000_000).author(author).since("#{since_hours_ago} hours ago").reverse_each do |commit|
         uris = URI.extract(commit.message)
 
         uris.select! do |uri|
