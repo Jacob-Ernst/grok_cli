@@ -1,3 +1,4 @@
+require 'pathname'
 require 'yaml'
 
 module GrokCLI

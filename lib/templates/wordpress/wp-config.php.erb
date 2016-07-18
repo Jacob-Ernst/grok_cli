@@ -1,0 +1,31 @@
+<?php
+
+define('DB_NAME', getenv('MYSQL_DATABASE'));
+define('DB_USER', getenv('MYSQL_USER'));
+define('DB_PASSWORD', getenv('MYSQL_PASSWORD'));
+define('DB_HOST', 'mysql');
+define('DB_CHARSET', 'utf8');
+define('DB_COLLATE', '');
+
+define('AUTH_KEY', '<%= SecureRandom.hex %>');
+define('SECURE_AUTH_KEY', '<%= SecureRandom.hex %>');
+define('LOGGED_IN_KEY', '<%= SecureRandom.hex %>');
+define('NONCE_KEY', '<%= SecureRandom.hex %>');
+define('AUTH_SALT', '<%= SecureRandom.hex %>');
+define('SECURE_AUTH_SALT', '<%= SecureRandom.hex %>');
+define('LOGGED_IN_SALT', '<%= SecureRandom.hex %>');
+define('NONCE_SALT', '<%= SecureRandom.hex %>');
+
+$table_prefix  = 'wp_';
+
+define('WP_DEBUG', false);
+
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+  $_SERVER['HTTPS'] = 'on';
+}
+
+if ( !defined('ABSPATH') ) {
+  define('ABSPATH', dirname(__FILE__) . '/');
+}
+
+require_once(ABSPATH . 'wp-settings.php');
