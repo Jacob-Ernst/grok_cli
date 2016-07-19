@@ -1,4 +1,7 @@
 require 'erb'
+require 'fileutils'
+require 'pathname'
+require 'securerandom'
 
 module GrokCLI::Docker::WordPress
   class Init
