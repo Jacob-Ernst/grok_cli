@@ -22,7 +22,7 @@ module GrokCLI
 
     c.desc 'Start the container services'
 
-    c.command 'start' do |c|
+    c.command 'up' do |c|
       c.action do
         GrokCLI::Docker::WordPress::Up.new.execute
       end

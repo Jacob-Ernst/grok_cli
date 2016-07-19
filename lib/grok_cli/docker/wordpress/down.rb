@@ -22,7 +22,7 @@ module GrokCLI
 
     c.desc 'Stop and remove all docker containers'
 
-    c.command 'setup' do |c|
+    c.command 'down' do |c|
       c.action do
         GrokCLI::Docker::WordPress::Down.new.execute
       end
