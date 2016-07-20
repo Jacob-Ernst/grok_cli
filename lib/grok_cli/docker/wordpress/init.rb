@@ -23,10 +23,6 @@ module GrokCLI::Docker::WordPress
         file.write(render_wp_config)
         puts "Created wp-config.php"
       end
-
-      system <<~CMD
-        docker-machine create #{machine_name} --driver virtualbox
-      CMD
     end
 
     private
