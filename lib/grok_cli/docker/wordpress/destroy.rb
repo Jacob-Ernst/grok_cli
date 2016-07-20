@@ -1,5 +1,5 @@
 module GrokCLI::Docker::WordPress
-  class Down
+  class Destroy
     def initialize(config = GrokCLI::Docker::Configuration.new)
       @config = config
     end
@@ -22,9 +22,9 @@ module GrokCLI
 
     c.desc 'Stop and remove all docker containers'
 
-    c.command 'down' do |c|
+    c.command 'destroy' do |c|
       c.action do
-        GrokCLI::Docker::WordPress::Down.new.execute
+        GrokCLI::Docker::WordPress::Destroy.new.execute
       end
     end
   end

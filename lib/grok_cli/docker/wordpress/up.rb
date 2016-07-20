@@ -5,9 +5,10 @@ module GrokCLI::Docker::WordPress
     end
 
     def execute
-      system <<~CMD
+      GrokCLI::Docker::Boot.new.execute
+      GrokCLI::Docker::UpdateEtcHosts.new.execute
 
-        docker-machine create #{@config.machine_name} --driver virtualbox
+      system <<~CMD
 
         eval "$(docker-machine env #{@config.machine_name})"
 
